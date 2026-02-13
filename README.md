@@ -56,6 +56,33 @@ cp agent-loop/CLAUDE.md target-project/
 }
 ```
 
+### 技术栈规范（如有需要）
+
+如果你有特定的技术栈要求，可以在 `steps` 中明确规定：
+
+```json
+{
+  "id": "1",
+  "description": "项目基础架构搭建",
+  "steps": [
+    "使用 React + TypeScript + Vite 初始化项目",
+    "使用 shadcn/ui 作为组件库",
+    "使用 Tailwind CSS 作为样式方案",
+    "配置 ESLint + Prettier"
+  ]
+}
+```
+
+可以在 steps 中规定的项目：
+
+| 规范项 | 示例 |
+|--------|------|
+| 前端框架 | React / Vue / Angular |
+| UI组件库 | shadcn/ui / Ant Design / Element Plus |
+| 样式方案 | Tailwind CSS / CSS Modules |
+| 状态管理 | Redux / Zustand / Jotai |
+| API方案 | Axios / React Query / SWR |
+
 ### 3. 启动 Claude Code
 
 ```powershell

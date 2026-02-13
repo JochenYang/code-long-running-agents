@@ -56,6 +56,33 @@ Edit `feature_list.json`:
 }
 ```
 
+### Tech Stack Specification (Optional)
+
+If you have specific tech stack requirements, you can specify them in `steps`:
+
+```json
+{
+  "id": "1",
+  "description": "Project infrastructure setup",
+  "steps": [
+    "Initialize project with React + TypeScript + Vite",
+    "Use shadcn/ui as component library",
+    "Use Tailwind CSS for styling",
+    "Configure ESLint + Prettier"
+  ]
+}
+```
+
+You can specify in steps:
+
+| Category | Examples |
+|----------|----------|
+| Frontend Framework | React / Vue / Angular |
+| UI Component Library | shadcn/ui / Ant Design / Element Plus |
+| Styling | Tailwind CSS / CSS Modules |
+| State Management | Redux / Zustand / Jotai |
+| API Solution | Axios / React Query / SWR |
+
 ### 3. Start Claude Code
 
 ```powershell
