@@ -2,10 +2,12 @@
 
 # Long-Running Agent 循环执行框架
 
-A framework for executing long-running AI agent tasks with structured feature lists and progress tracking.
+一个通过结构化功能清单和进度跟踪来执行长时间AI Agent任务的框架。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](#)
+
+[**English**](README-EN.md) | 中文
 
 </div>
 

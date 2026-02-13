@@ -7,6 +7,8 @@ A framework for executing long-running AI agent tasks with structured feature li
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](#)
 
+English | [**中文**](README.md)
+
 </div>
 
 ---
