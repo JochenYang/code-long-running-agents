@@ -1,7 +1,5 @@
 # Long-Running Agent 循环执行工具
 
-基于 [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) 设计的长运行 Agent 任务执行框架。
-
 ## 解决的问题
 
 AI Agent 在长时间任务中面临的核心挑战：

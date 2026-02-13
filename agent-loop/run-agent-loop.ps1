@@ -100,6 +100,12 @@ while ($iteration -lt $MaxIterations) {
     Write-Host "🎯 Next Feature: $($nextFeature.description)" -ForegroundColor Magenta
     Write-Host "════════════════════════════════════════════════════════════" -ForegroundColor Yellow
 
+    # Read progress for context injection
+    $progressContent = ""
+    if (Test-Path (Join-Path $ProjectDir $PROGRESS_FILE)) {
+        $progressContent = Get-Content (Join-Path $ProjectDir $PROGRESS_FILE) -Raw
+    }
+
     # Build the task prompt
     $taskPrompt = @"
 请实现以下功能：
@@ -110,13 +116,15 @@ $($nextFeature.description)
 ## 实现步骤
 $($nextFeature.steps | ForEach-Object { "$($_)" } | Out-String)
 
+## 当前进度上下文 (System Context)
+$progressContent
+
 ## 要求
-1. 先读取 claude-progress.txt 和 feature_list.json 了解当前状态
-2. 启动开发服务器 (如果有 init.sh)
-3. 实现上述功能
-4. 完成后更新 feature_list.json 中该功能的 passes 为 true
-5. 更新 claude-progress.txt 记录进度
-6. 提交 git (如果已初始化 git)
+1. 启动开发服务器 (如果有 init.sh 且未运行)
+2. 实现上述功能
+3. 完成后更新 feature_list.json 中该功能的 passes 为 true
+4. 更新 claude-progress.txt 记录进度
+5. 提交 git (如果已初始化 git)
 
 注意：必须验证功能正常工作后才能标记为 passes: true
 "@
@@ -133,6 +141,8 @@ $($nextFeature.steps | ForEach-Object { "$($_)" } | Out-String)
     } else {
         Write-Host "❌ Iteration failed with exit code $LASTEXITCODE" -ForegroundColor Red
         Update-Progress -Dir $ProjectDir -FeatureId $nextFeature.id -Status "Failed"
+        Write-Host "🛑 Stopping loop due to failure to prevent cascading errors." -ForegroundColor Red
+        break
     }
 
     if ($Verbose) {

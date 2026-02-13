@@ -3,20 +3,25 @@
 ## 核心挑战
 
 代理在离散会话中工作，新会话对之前无记忆。两种失败模式：
+
 1. 试图一次性完成太多，耗尽上下文
 2. 看到已有进展后，过早宣布完成
 
 ## 双代理架构
 
 ### 初始化代理 (Initializer)
+
 首个会话创建：
+
 - `init.sh` - 启动开发服务器
 - `feature_list.json` - 功能列表（初始 passes: false）
 - `claude-progress.txt` - 进度记录
 - 初始 git 提交
 
 ### 编码代理 (Coding Agent)
+
 后续会话执行：
+
 1. 读取 claude-progress.txt + feature_list.json + git log
 2. 执行 init.sh 启动环境，验证基本功能
 3. 从 feature_list.json 选 passes=false 的功能
@@ -26,13 +31,13 @@
 
 ## 文件说明
 
-| 文件                | 用途                                      |
-|---------------------|-------------------------------------------|
-| CLAUDE.md           | 本说明文档                                |
+| 文件                | 用途                                         |
+| ------------------- | -------------------------------------------- |
+| CLAUDE.md           | 本说明文档                                   |
 | feature_list.json   | 功能清单（定义任务，每个功能 passes: false） |
-| claude-progress.txt | 进度记录                                  |
-| init.sh             | 开发服务器启动脚本（根据项目修改）          |
-| run-agent-loop.ps1  | 循环执行脚本                              |
+| claude-progress.txt | 进度记录                                     |
+| init.sh             | 开发服务器启动脚本（根据项目修改）           |
+| run-agent-loop.ps1  | 循环执行脚本                                 |
 
 ## feature_list.json 格式
 
@@ -51,6 +56,7 @@
 ```
 
 **关键规则**:
+
 - 所有功能初始 passes 必须为 false
 - 代理只能通过验证后改为 true
 
@@ -123,7 +129,7 @@ claude
 ## 会话检查清单
 
 - [ ] pwd 确认工作目录
-- [ ] 读取 claude-progress.txt 了解当前状态
+- [x] 读取 claude-progress.txt (脚本已自动注入上下文)
 - [ ] 读取 feature_list.json 选择下一个功能
 - [ ] git log --oneline -10 查看最近提交
 - [ ] 执行 init.sh 启动开发服务器
