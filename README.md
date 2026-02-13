@@ -1,11 +1,27 @@
-# Long-Running Agent 循环执行工具
+<div align="center">
+
+# Long-Running Agent 循环执行框架
+
+A framework for executing long-running AI agent tasks with structured feature lists and progress tracking.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](#)
+
+</div>
+
+---
 
 ## 解决的问题
 
 AI Agent 在长时间任务中面临的核心挑战：
-- **上下文窗口限制**: 每个新会话对之前没有记忆
-- **过早完成**: Agent 看到已有进展后容易过早宣布完成
-- **一次性做太多**: 试图一口气完成整个项目导致中途失败
+
+| 挑战 | 描述 |
+|------|------|
+| **上下文窗口限制** | 每个新会话对之前没有记忆 |
+| **过早完成** | Agent 看到已有进展后容易过早宣布完成 |
+| **一次性做太多** | 试图一口气完成整个项目导致中途失败 |
+
+---
 
 ## 快速开始
 
@@ -33,13 +49,6 @@ cp agent-loop/CLAUDE.md target-project/
       "steps": ["创建登录页面", "添加表单验证", "对接后端API"],
       "passes": false,
       "priority": "high"
-    },
-    {
-      "id": "2",
-      "description": "实现用户注册功能",
-      "steps": ["创建注册页面", "实现密码加密", "测试注册流程"],
-      "passes": false,
-      "priority": "high"
     }
   ]
 }
@@ -58,6 +67,8 @@ claude
 
 > "请读取 feature_list.json，按优先级顺序实现所有 passes:false 的功能。每次完成后更新 passes 为 true 并记录进度。"
 
+---
+
 ## 文件说明
 
 | 文件 | 说明 |
@@ -67,6 +78,8 @@ claude
 | `claude-progress.txt` | 进度记录 |
 | `init.sh` | 开发服务器启动脚本 |
 | `run-agent-loop.ps1` | 循环执行脚本（可选） |
+
+---
 
 ## feature_list.json 格式
 
@@ -94,12 +107,16 @@ claude
 | passes | ✅ | 完成状态，初始为 false |
 | priority | ✅ | 优先级：high/medium/low |
 
+---
+
 ## 核心规则
 
 1. **所有功能初始 passes 必须为 false**
 2. **Agent 只能通过验证后改为 true**
 3. **每次只实现一个功能**
 4. **完成后必须提交 git 并更新进度**
+
+---
 
 ## 会话流程
 
@@ -118,18 +135,59 @@ claude
 12. 循环下一个功能
 ```
 
+---
+
 ## 示例项目
 
-本仓库包含一个漫剧生图项目的完整功能清单作为示例：
+本仓库包含一个漫剧生图项目的完整功能清单作为示例（共15个功能）：
 
-- 项目基础架构搭建
-- 用户认证系统
-- AI图像生成面板
-- 图像编辑工具
-- 漫画分格系统
-- 对话气泡系统
-- ...共15个功能
+| 优先级 | 功能 |
+|--------|------|
+| High | 项目基础架构搭建 |
+| High | 用户认证系统 |
+| High | AI图像生成面板 |
+| High | 图像编辑工具 |
+| High | 漫画分格系统 |
+| Medium | 对话气泡系统 |
+| Medium | 角色管理系统 |
+| Medium | 故事板管理 |
+| Medium | 项目/作品管理 |
+| Medium | 图像库/素材库 |
+| Medium | 导出功能 |
+| Low | 历史记录系统 |
+| Low | AI局部重绘 |
+| Low | AI图像放大 |
+| Low | 协作功能 |
+
+---
+
+## 项目结构
+
+```
+code-long-running-agents/
+├── README.md              # 中文说明
+├── README-EN.md           # English
+├── LICENSE                # MIT License
+├── agent-loop/            # 中文版
+│   ├── CLAUDE.md
+│   ├── feature_list.json
+│   ├── claude-progress.txt
+│   ├── init.sh
+│   └── run-agent-loop.ps1
+└── agent-loop-en/         # English version
+    ├── CLAUDE.md
+    ├── feature_list.json
+    ├── claude-progress.txt
+    ├── init.sh
+    └── run-agent-loop.ps1
+```
+
+---
+
+<div align="center">
 
 ## 许可证
 
-MIT
+MIT License - see [LICENSE](LICENSE) for details.
+
+</div>
