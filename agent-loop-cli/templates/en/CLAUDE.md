@@ -27,27 +27,7 @@ Core challenges AI agents face in long-running tasks:
 
 ## Quick Start
 
-### Option 1: Use CLI (Recommended)
-
-```bash
-# Interactive mode (auto-detects system language)
-npx agent-loop init
-
-# Specify Chinese
-npx agent-loop init --lang zh
-
-# Specify English
-npx agent-loop init --lang en
-
-# Specify target directory
-npx agent-loop init --lang en --dir ./my-project
-```
-
-CLI will automatically:
-- Copy `CLAUDE.md` to project root
-- Create `agent-loop/` directory with all required files
-
-### Option 2: Manual Copy
+### 1. Copy to Target Project
 
 ```powershell
 # Option 1: Copy entire folder

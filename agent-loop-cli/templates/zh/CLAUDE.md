@@ -29,27 +29,7 @@ AI Agent 在长时间任务中面临的核心挑战：
 
 ## 快速开始
 
-### 方式一：使用 CLI 初始化（推荐）
-
-```bash
-# 交互式初始化（自动检测系统语言）
-npx agent-loop init
-
-# 指定中文
-npx agent-loop init --lang zh
-
-# 指定英文
-npx agent-loop init --lang en
-
-# 指定目录
-npx agent-loop init --lang zh --dir ./my-project
-```
-
-CLI 会自动：
-- 复制 `CLAUDE.md` 到项目根目录
-- 创建 `agent-loop/` 目录及所有必要文件
-
-### 方式二：手动复制
+### 1. 复制到目标项目
 
 ```powershell
 # 复制整个文件夹

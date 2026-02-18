@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Test directories
+test-install/
+test-install-en/
+cli-test*/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,34 @@
+{
+  "project": {
+    "name": "your-project-name",
+    "description": "项目描述 - 简洁说明项目做什么",
+    "complexity": "medium",
+    "totalFeatures": 0,
+    "createdAt": "2026-02-18T00:00:00Z"
+  },
+  "features": [
+    {
+      "id": "1",
+      "category": "core",
+      "description": "功能名称 - 简洁描述",
+      "expectedOutcome": "期望结果 - 完成后用户能看到什么/体验到什么",
+      "testableSteps": [
+        {
+          "step": 1,
+          "action": "具体操作（如：点击、输入、导航）",
+          "target": "目标元素（如：#login-btn, http://localhost:3000/login）",
+          "value": "可选，输入值",
+          "verification": "验证条件（如：页面包含'欢迎'，URL包含'/dashboard'）"
+        }
+      ],
+      "passes": false,
+      "testedAt": null,
+      "failureReason": null,
+      "attemptCount": 0,
+      "priority": "must-have",
+      "complexity": "simple",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "updatedAt": "2026-02-18T00:00:00Z"
+    }
+  ]
+}
