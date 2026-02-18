@@ -1,11 +1,16 @@
 {
   "name": "agent-loop",
   "version": "1.0.0",
-  "description": "Long-Running Agent Loop Framework CLI - 基于 Anthropic 官方论文的 AI Agent 脚手架",
+  "description": "Long-Running Agent Loop Framework CLI - Based on Anthropic paper",
   "main": "src/index.js",
   "bin": {
     "agent-loop": "./bin/agent-loop.js"
   },
+  "files": [
+    "bin",
+    "src",
+    "templates"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
