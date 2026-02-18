@@ -35,16 +35,16 @@ AI Agent 在长时间任务中面临的核心挑战：
 
 ```bash
 # 交互式初始化（自动检测系统语言）
-npx agent-loop init
+npx ai-agent-loop init
 
 # 指定中文
-npx agent-loop init --lang zh
+npx ai-agent-loop init --lang zh
 
 # 指定英文
-npx agent-loop init --lang en
+npx ai-agent-loop init --lang en
 
 # 指定目录
-npx agent-loop init --lang zh --dir ./my-project
+npx ai-agent-loop init --lang zh --dir ./my-project
 ```
 
 CLI 会自动：

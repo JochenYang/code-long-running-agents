@@ -33,16 +33,16 @@ Core challenges AI agents face in long-running tasks:
 
 ```bash
 # Interactive mode (auto-detects system language)
-npx agent-loop init
+npx ai-agent-loop init
 
 # Specify Chinese
-npx agent-loop init --lang zh
+npx ai-agent-loop init --lang zh
 
 # Specify English
-npx agent-loop init --lang en
+npx ai-agent-loop init --lang en
 
 # Specify target directory
-npx agent-loop init --lang en --dir ./my-project
+npx ai-agent-loop init --lang en --dir ./my-project
 ```
 
 CLI will automatically:

@@ -11,7 +11,7 @@ npm install -g agent-loop
 或直接使用（无需安装）:
 
 ```bash
-npx agent-loop init
+npx ai-agent-loop init
 ```
 
 ## 使用方法
@@ -19,7 +19,7 @@ npx agent-loop init
 ### 交互式初始化
 
 ```bash
-npx agent-loop init
+npx ai-agent-loop init
 ```
 
 会提示选择语言和目标目录。
@@ -30,16 +30,16 @@ npx agent-loop init
 
 ```bash
 # 中文
-npx agent-loop init --lang zh
+npx ai-agent-loop init --lang zh
 
 # 英文
-npx agent-loop init --lang en
+npx ai-agent-loop init --lang en
 ```
 
 指定目标目录:
 
 ```bash
-npx agent-loop init --lang zh --dir ./my-project
+npx ai-agent-loop init --lang zh --dir ./my-project
 ```
 
 ## 输出
