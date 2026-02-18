@@ -2,7 +2,9 @@
 
 # Long-Running Agent 循环执行框架
 
-一个通过结构化功能清单和进度跟踪来执行长时间AI Agent任务的框架。
+一个通过结构化功能清单和进度跟踪来执行长时间 AI Agent 任务的框架。
+
+基于 Anthropic 官方论文 [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) 的最佳实践。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue.svg)](#)
@@ -30,58 +32,36 @@ AI Agent 在长时间任务中面临的核心挑战：
 ### 1. 复制到目标项目
 
 ```powershell
-# 方式1：复制整个文件夹
+# 复制整个文件夹
 Copy-Item -Recurse agent-loop target-project/
 
-# 方式2：只复制必要文件
-cp agent-loop/feature_list.json target-project/
-cp agent-loop/CLAUDE.md target-project/
+# 复制 CLAUDE.md 到项目根目录
+Copy-Item agent-loop/CLAUDE.md target-project/
 ```
 
 ### 2. 配置任务
 
-编辑 `feature_list.json`：
+编辑 `agent-loop/feature_list.json`：
 
 ```json
 {
+  "project": {
+    "name": "your-project-name",
+    "description": "项目描述"
+  },
   "features": [
     {
       "id": "1",
       "description": "实现用户登录功能",
-      "steps": ["创建登录页面", "添加表单验证", "对接后端API"],
+      "testableSteps": [
+        {"step": 1, "action": "导航到登录页", "target": "/login", "verification": "页面包含登录"}
+      ],
       "passes": false,
-      "priority": "high"
+      "priority": "must-have"
     }
   ]
 }
 ```
-
-### 技术栈规范（如有需要）
-
-如果你有特定的技术栈要求，可以在 `steps` 中明确规定：
-
-```json
-{
-  "id": "1",
-  "description": "项目基础架构搭建",
-  "steps": [
-    "使用 React + TypeScript + Vite 初始化项目",
-    "使用 shadcn/ui 作为组件库",
-    "使用 Tailwind CSS 作为样式方案",
-    "配置 ESLint + Prettier"
-  ]
-}
-```
-
-可以在 steps 中规定的项目：
-
-| 规范项 | 示例 |
-|--------|------|
-| 前端框架 | React / Vue / Angular |
-| UI组件库 | shadcn/ui / Ant Design / Element Plus |
-| 样式方案 | Tailwind CSS / CSS Modules |
-| 状态管理 | Redux / Zustand / Jotai |
-| API方案 | Axios / React Query / SWR |
 
 ### 3. 启动 Claude Code
 
@@ -92,9 +72,64 @@ claude
 
 ### 4. 执行任务
 
+#### 方式一：无 PRD，直接配置任务
+
 告诉 Claude：
 
-> "请读取 feature_list.json，按优先级顺序实现所有 passes:false 的功能。每次完成后更新 passes 为 true 并记录进度。"
+> **"请读取 agent-loop/feature_list.json，按优先级顺序实现所有 passes:false 的功能。测试通过后才能标记为完成，每次完成后更新进度并提交 git。"**
+
+#### 方式二：有 PRD，根据 PRD 生成分功能清单
+
+如果项目有 PRD.md，先告诉 Claude：
+
+> **"请读取 PRD.md，根据产品需求文档生成分功能清单。参考 agent-loop/feature_list.json 模板，每个功能需要包含 testableSteps（可验证的测试步骤）。"**
+
+完整指令示例：
+
+```markdown
+请读取 PRD.md，然后执行以下任务：
+
+1. 读取并理解 PRD - 分析产品需求文档中的所有功能需求
+
+2. 生成分功能清单 - 根据 PRD 创建 agent-loop/feature_list.json，要求：
+   - 每个功能包含：id, category, description, expectedOutcome, testableSteps, passes, priority, complexity
+   - 使用 JSON 格式（防止随意修改）
+   - testableSteps 必须包含具体的可验证步骤（action, target, verification）
+   - 按优先级排序（must-have → should-have → could-have）
+
+3. 初始化项目 - 确保项目可以正常运行：
+   - 运行 ./agent-loop/init.sh start 启动开发服务器
+   - 验证服务器正常
+
+4. 创建 Git 仓库（如无）：
+   - git init
+   - git add .
+   - git commit -m "feat: initial setup with feature list"
+   - git checkout -b develop
+```
+
+---
+
+## 核心流程
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Agent 开发循环                                  │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1. git checkout -b feature/编号-名称   → 创建功能分支        │
+│  2. 启动开发服务器 ./init.sh start                             │
+│  3. 实现功能                                                   │
+│  4. 运行测试 ./init.sh test                                   │
+│  5. 测试失败？→ 修复代码 → 重新测试 → 直到通过               │
+│  6. 测试通过 → 更新 passes: true                             │
+│  7. 更新 claude-progress.txt                                   │
+│  8. git add . && git commit                                  │
+│  9. git checkout develop && git merge feature/xxx            │
+│  10. 循环下一个功能                                            │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -102,91 +137,45 @@ claude
 
 | 文件 | 说明 |
 |------|------|
-| `CLAUDE.md` | Agent 流程定义（Claude Code 会自动读取） |
-| `feature_list.json` | 功能清单，定义要完成的任务 |
-| `claude-progress.txt` | 进度记录 |
-| `init.sh` | 开发服务器启动脚本 |
-| `run-agent-loop.ps1` | 循环执行脚本（可选） |
+| `CLAUDE.md` | 入口文档（复制到项目根目录） |
+| `agent-loop/CLAUDE-INIT.md` | 初始化代理指南（首个会话） |
+| `agent-loop/CLAUDE-CODING.md` | 编码代理指南（后续会话） |
+| `agent-loop/feature_list.json` | 功能清单模板 |
+| `agent-loop/init.sh` | 启动+测试脚本 |
+| `agent-loop/claude-progress.txt` | 进度记录 |
 
 ---
 
-## feature_list.json 格式
+## init.sh 命令
 
-```json
-{
-  "features": [
-    {
-      "id": "1",
-      "description": "功能描述",
-      "steps": ["步骤1", "步骤2", "步骤3"],
-      "passes": false,
-      "priority": "high"
-    }
-  ]
-}
+```bash
+./agent-loop/init.sh start   # 启动开发服务器
+./agent-loop/init.sh test   # 运行测试
+./agent-loop/init.sh status # 查看状态
+./agent-loop/init.sh stop   # 停止服务器
 ```
-
-### 字段说明
-
-| 字段 | 必填 | 说明 |
-|------|------|------|
-| id | ✅ | 唯一标识符 |
-| description | ✅ | 功能描述 |
-| steps | ✅ | 实现步骤数组 |
-| passes | ✅ | 完成状态，初始为 false |
-| priority | ✅ | 优先级：high/medium/low |
 
 ---
 
 ## 核心规则
 
-1. **所有功能初始 passes 必须为 false**
-2. **Agent 只能通过验证后改为 true**
-3. **每次只实现一个功能**
-4. **完成后必须提交 git 并更新进度**
+1. **测试驱动开发** - 实现功能 → 测试 → 失败则修复 → 重测 → 直到通过 → 下一功能
+2. **证据优先** - 无测试证据不声称完成
+3. **每功能独立分支** - 每个功能在单独 Git 分支开发
+4. **passes 必须为 false 初始值** - 只能通过验证后改为 true
 
 ---
 
-## 会话流程
+## 基于官方最佳实践
 
-```
-1. 读取 CLAUDE.md (了解规则)
-2. 读取 feature_list.json (选择任务)
-3. 读取 claude-progress.txt (了解进度)
-4. 查看 git log (了解历史)
-5. 启动开发服务器 (init.sh)
-6. 验证基本功能正常
-7. 实现当前功能
-8. 测试验证
-9. 更新 passes: true
-10. 更新进度记录
-11. git commit
-12. 循环下一个功能
-```
+本框架实现自 Anthropic 官方论文的核心原则：
 
----
-
-## 示例项目
-
-本仓库包含一个漫剧生图项目的完整功能清单作为示例（共15个功能）：
-
-| 优先级 | 功能 |
-|--------|------|
-| High | 项目基础架构搭建 |
-| High | 用户认证系统 |
-| High | AI图像生成面板 |
-| High | 图像编辑工具 |
-| High | 漫画分格系统 |
-| Medium | 对话气泡系统 |
-| Medium | 角色管理系统 |
-| Medium | 故事板管理 |
-| Medium | 项目/作品管理 |
-| Medium | 图像库/素材库 |
-| Medium | 导出功能 |
-| Low | 历史记录系统 |
-| Low | AI局部重绘 |
-| Low | AI图像放大 |
-| Low | 协作功能 |
+- ✅ 双代理架构（Initializer + Coding）
+- ✅ 功能清单管理（JSON 格式防止随意修改）
+- ✅ 测试验证机制（Puppeteer 浏览器自动化）
+- ✅ 进度追踪（claude-progress.txt + Git 历史）
+- ✅ 反过早完成机制（强制测试循环）
+- ✅ Git 分支工作流
 
 ---
 
@@ -195,16 +184,20 @@ claude
 ```
 code-long-running-agents/
 ├── README.md              # 中文说明
-├── README-EN.md           # English
-├── LICENSE                # MIT License
-├── agent-loop/            # 中文版
+├── README-EN.md          # English
+├── LICENSE               # MIT License
+├── agent-loop/           # 中文版
 │   ├── CLAUDE.md
+│   ├── CLAUDE-INIT.md
+│   ├── CLAUDE-CODING.md
 │   ├── feature_list.json
 │   ├── claude-progress.txt
 │   ├── init.sh
 │   └── run-agent-loop.ps1
-└── agent-loop-en/         # English version
+└── agent-loop-en/        # English version
     ├── CLAUDE.md
+    ├── CLAUDE-INIT.md
+    ├── CLAUDE-CODING.md
     ├── feature_list.json
     ├── claude-progress.txt
     ├── init.sh

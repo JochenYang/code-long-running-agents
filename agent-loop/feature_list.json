@@ -1,212 +1,34 @@
 {
+  "project": {
+    "name": "your-project-name",
+    "description": "项目描述 - 简洁说明项目做什么",
+    "complexity": "medium",
+    "totalFeatures": 0,
+    "createdAt": "2026-02-18T00:00:00Z"
+  },
   "features": [
     {
       "id": "1",
-      "description": "项目基础架构搭建 - 创建React + TypeScript项目，配置Tailwind CSS，建立项目目录结构",
-      "steps": [
-        "初始化 React + TypeScript 项目 (Vite)",
-        "安装并配置 Tailwind CSS",
-        "创建项目目录结构 (components, hooks, utils, types, assets)",
-        "配置 ESLint 和 Prettier",
-        "创建基础布局组件 (Header, Sidebar, MainContent)"
+      "category": "core",
+      "description": "功能名称 - 简洁描述",
+      "expectedOutcome": "期望结果 - 完成后用户能看到什么/体验到什么",
+      "testableSteps": [
+        {
+          "step": 1,
+          "action": "具体操作（如：点击、输入、导航）",
+          "target": "目标元素（如：#login-btn, http://localhost:3000/login）",
+          "value": "可选，输入值",
+          "verification": "验证条件（如：页面包含'欢迎'，URL包含'/dashboard'）"
+        }
       ],
       "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "2",
-      "description": "用户认证系统 - 实现登录、注册、会话管理功能",
-      "steps": [
-        "创建登录页面 (LoginForm 组件)",
-        "创建注册页面 (RegisterForm 组件)",
-        "实现 JWT 认证流程",
-        "创建用户上下文 (UserContext) 管理登录状态",
-        "实现登出功能和会话过期处理"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "3",
-      "description": "AI图像生成面板 - 接入图像生成API，实现文本到图像功能",
-      "steps": [
-        "创建 ImageGenerator 组件",
-        "实现提示词输入框 (PromptInput)",
-        "添加负面提示词输入",
-        "实现风格选择器 (StyleSelector)",
-        "添加图像尺寸选择 (比例/分辨率)",
-        "接入生成API并处理响应",
-        "实现加载状态和进度显示"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "4",
-      "description": "图像编辑工具 - 实现基本图像编辑功能（裁剪、缩放、旋转）",
-      "steps": [
-        "创建 ImageEditor 组件",
-        "实现图像裁剪功能 (CropTool)",
-        "实现图像缩放功能 (ZoomTool)",
-        "实现图像旋转功能 (RotateTool)",
-        "添加撤销/重做功能",
-        "实现编辑历史记录"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "5",
-      "description": "漫画分格系统 - 实现漫画格子布局和拖拽排序",
-      "steps": [
-        "创建 PanelGrid 组件",
-        "实现格子添加/删除功能",
-        "实现格子拖拽排序 (React DnD)",
-        "创建格子尺寸调整器",
-        "实现格子边框样式选择",
-        "添加格子间距控制"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "6",
-      "description": "对话气泡系统 - 添加漫画对话气泡和文本合成",
-      "steps": [
-        "创建 SpeechBubble 组件",
-        "实现气泡类型选择 (对话、思考、旁白)",
-        "实现气泡位置拖拽",
-        "创建文本编辑器 (字体、大小、颜色)",
-        "实现气泡样式模板",
-        "添加气泡连线功能"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "7",
-      "description": "角色管理系统 - 创建和管理漫画角色库",
-      "steps": [
-        "创建 CharacterList 组件",
-        "实现角色创建表单",
-        "上传角色参考图",
-        "创建角色属性面板 (名字、描述、特点)",
-        "实现角色库搜索和筛选",
-        "创建角色变体管理"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "8",
-      "description": "故事板管理 - 创建和管理漫画分镜/故事板",
-      "steps": [
-        "创建 StoryboardView 组件",
-        "实现分镜添加/删除",
-        "创建分镜缩略图预览",
-        "实现分镜拖拽排序",
-        "添加分镜描述文本编辑",
-        "创建分镜复制/粘贴功能"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "9",
-      "description": "项目/作品管理 - 创建漫画项目，支持多作品管理",
-      "steps": [
-        "创建 ProjectList 组件",
-        "实现项目创建/删除",
-        "创建项目设置面板",
-        "实现项目复制功能",
-        "添加项目标签和分类",
-        "创建项目收藏功能"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "10",
-      "description": "图像库/素材库 - 管理生成的图像和上传的素材",
-      "steps": [
-        "创建 AssetLibrary 组件",
-        "实现素材上传功能 (拖拽上传)",
-        "创建素材分类文件夹",
-        "实现素材搜索功能",
-        "添加素材收藏和标记",
-        "实现素材批量管理"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "11",
-      "description": "导出功能 - 支持多种格式导出漫画",
-      "steps": [
-        "创建 ExportPanel 组件",
-        "实现 PNG/JPG 导出",
-        "实现 PDF 导出 (多页漫画)",
-        "实现透明背景 PNG 导出",
-        "添加导出分辨率选择",
-        "实现批量导出功能"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "12",
-      "description": "历史记录系统 - 实现操作历史和版本管理",
-      "steps": [
-        "创建 HistoryPanel 组件",
-        "实现操作步骤记录",
-        "创建时间轴视图",
-        "实现版本快照功能",
-        "添加版本对比功能",
-        "实现版本恢复功能"
-      ],
-      "passes": false,
-      "priority": "low"
-    },
-    {
-      "id": "13",
-      "description": "AI局部重绘 - 实现图像局部编辑和重绘",
-      "steps": [
-        "创建 InpaintingTool 组件",
-        "实现画笔遮罩绘制",
-        "添加遮罩笔刷大小调整",
-        "接入重绘API",
-        "实现遮罩预览",
-        "添加重绘强度控制"
-      ],
-      "passes": false,
-      "priority": "low"
-    },
-    {
-      "id": "14",
-      "description": "AI图像放大 - 实现高清图像放大功能",
-      "steps": [
-        "创建 ImageUpscaler 组件",
-        "添加放大倍数选择 (2x, 4x)",
-        "实现放大算法选择",
-        "添加处理进度显示",
-        "实现预览对比功能"
-      ],
-      "passes": false,
-      "priority": "low"
-    },
-    {
-      "id": "15",
-      "description": "协作功能 - 实现多人协作编辑漫画",
-      "steps": [
-        "创建协作邀请功能",
-        "实现实时同步 (WebSocket)",
-        "添加用户在线状态显示",
-        "实现协作权限管理",
-        "创建评论/标注功能",
-        "添加协作历史记录"
-      ],
-      "passes": false,
-      "priority": "low"
+      "testedAt": null,
+      "failureReason": null,
+      "attemptCount": 0,
+      "priority": "must-have",
+      "complexity": "simple",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "updatedAt": "2026-02-18T00:00:00Z"
     }
   ]
 }

@@ -92,9 +92,41 @@ claude
 
 ### 4. Execute Tasks
 
+#### Option 1: No PRD, Configure Tasks Directly
+
 Tell Claude:
 
-> "Please read feature_list.json and implement all passes:false features in priority order. Update passes to true after each completion and record progress."
+> "Please read agent-loop/feature_list.json and implement all passes:false features in priority order. Test each feature until it passes before marking as complete. Update progress and commit to git after each completion."
+
+#### Option 2: Has PRD, Generate Feature List from PRD
+
+If project has PRD.md, tell Claude first:
+
+> "Please read PRD.md and generate a comprehensive feature list based on the product requirements document. Reference agent-loop/feature_list.json template - each feature needs testableSteps (verifiable test steps)."
+
+Full instruction example:
+
+```markdown
+Please read PRD.md and then execute the following tasks:
+
+1. Read and understand PRD - analyze all functional requirements from the product requirements document
+
+2. Generate feature list - create agent-loop/feature_list.json based on PRD:
+   - Each feature must include: id, category, description, expectedOutcome, testableSteps, passes, priority, complexity
+   - Use JSON format (prevents arbitrary modifications)
+   - testableSteps must include specific verifiable steps (action, target, verification)
+   - Sort by priority (must-have → should-have → could-have)
+
+3. Initialize project - ensure project runs properly:
+   - Run ./agent-loop/init.sh start to start dev server
+   - Verify server is running
+
+4. Create Git repository (if none):
+   - git init
+   - git add .
+   - git commit -m "feat: initial setup with feature list"
+   - git checkout -b develop
+```
 
 ---
 

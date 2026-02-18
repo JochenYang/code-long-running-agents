@@ -1,212 +1,34 @@
 {
+  "project": {
+    "name": "your-project-name",
+    "description": "Project description - brief explanation of what the project does",
+    "complexity": "medium",
+    "totalFeatures": 0,
+    "createdAt": "2026-02-18T00:00:00Z"
+  },
   "features": [
     {
       "id": "1",
-      "description": "Project Infrastructure Setup - Create React + TypeScript project with Tailwind CSS, establish project directory structure",
-      "steps": [
-        "Initialize React + TypeScript project (Vite)",
-        "Install and configure Tailwind CSS",
-        "Create project directory structure (components, hooks, utils, types, assets)",
-        "Configure ESLint and Prettier",
-        "Create basic layout components (Header, Sidebar, MainContent)"
+      "category": "core",
+      "description": "Feature name - brief description",
+      "expectedOutcome": "Expected result - what the user sees/experiences after completion",
+      "testableSteps": [
+        {
+          "step": 1,
+          "action": "Specific action (e.g., click, input, navigate)",
+          "target": "Target element (e.g., #login-btn, http://localhost:3000/login)",
+          "value": "Optional, input value",
+          "verification": "Verification condition (e.g., page contains 'Welcome', URL contains '/dashboard')"
+        }
       ],
       "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "2",
-      "description": "User Authentication System - Implement login, registration, session management",
-      "steps": [
-        "Create login page (LoginForm component)",
-        "Create registration page (RegisterForm component)",
-        "Implement JWT authentication flow",
-        "Create UserContext to manage login state",
-        "Implement logout and session expiration handling"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "3",
-      "description": "AI Image Generation Panel - Integrate image generation API, implement text-to-image functionality",
-      "steps": [
-        "Create ImageGenerator component",
-        "Implement prompt input (PromptInput)",
-        "Add negative prompt input",
-        "Implement style selector (StyleSelector)",
-        "Add image size selection (aspect ratio/resolution)",
-        "Integrate generation API and handle response",
-        "Implement loading state and progress display"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "4",
-      "description": "Image Editing Tools - Implement basic image editing (crop, scale, rotate)",
-      "steps": [
-        "Create ImageEditor component",
-        "Implement crop tool (CropTool)",
-        "Implement zoom tool (ZoomTool)",
-        "Implement rotate tool (RotateTool)",
-        "Add undo/redo functionality",
-        "Implement edit history tracking"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "5",
-      "description": "Comic Panel Grid System - Implement comic panel layout with drag-and-drop reordering",
-      "steps": [
-        "Create PanelGrid component",
-        "Implement panel add/remove functionality",
-        "Implement panel drag-and-drop reordering (React DnD)",
-        "Create panel size adjuster",
-        "Implement panel border style selection",
-        "Add panel spacing control"
-      ],
-      "passes": false,
-      "priority": "high"
-    },
-    {
-      "id": "6",
-      "description": "Speech Bubble System - Add comic speech bubbles and text composition",
-      "steps": [
-        "Create SpeechBubble component",
-        "Implement bubble type selection (dialogue, thought, narration)",
-        "Implement bubble position drag",
-        "Create text editor (font, size, color)",
-        "Implement bubble style templates",
-        "Add bubble connection lines"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "7",
-      "description": "Character Management System - Create and manage comic character library",
-      "steps": [
-        "Create CharacterList component",
-        "Implement character creation form",
-        "Upload character reference images",
-        "Create character property panel (name, description, traits)",
-        "Implement character library search and filter",
-        "Create character variant management"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "8",
-      "description": "Storyboard Management - Create and manage comic storyboards/scenes",
-      "steps": [
-        "Create StoryboardView component",
-        "Implement scene add/remove",
-        "Create scene thumbnail preview",
-        "Implement scene drag-and-drop reordering",
-        "Add scene description text editing",
-        "Create scene copy/paste functionality"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "9",
-      "description": "Project/Workspace Management - Create comic projects, support multiple projects",
-      "steps": [
-        "Create ProjectList component",
-        "Implement project create/delete",
-        "Create project settings panel",
-        "Implement project duplicate functionality",
-        "Add project tags and categories",
-        "Create project favorite functionality"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "10",
-      "description": "Asset Library - Manage generated images and uploaded assets",
-      "steps": [
-        "Create AssetLibrary component",
-        "Implement asset upload (drag-and-drop)",
-        "Create asset categorization folders",
-        "Implement asset search functionality",
-        "Add asset favorites and tagging",
-        "Implement batch asset management"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "11",
-      "description": "Export Functionality - Support multiple formats for comic export",
-      "steps": [
-        "Create ExportPanel component",
-        "Implement PNG/JPG export",
-        "Implement PDF export (multi-page comic)",
-        "Implement transparent background PNG export",
-        "Add export resolution selection",
-        "Implement batch export functionality"
-      ],
-      "passes": false,
-      "priority": "medium"
-    },
-    {
-      "id": "12",
-      "description": "History System - Implement operation history and version management",
-      "steps": [
-        "Create HistoryPanel component",
-        "Implement operation step recording",
-        "Create timeline view",
-        "Implement version snapshot functionality",
-        "Add version comparison feature",
-        "Implement version restore functionality"
-      ],
-      "passes": false,
-      "priority": "low"
-    },
-    {
-      "id": "13",
-      "description": "AI Inpainting - Implement image local editing and regeneration",
-      "steps": [
-        "Create InpaintingTool component",
-        "Implement brush mask drawing",
-        "Add mask brush size adjustment",
-        "Integrate inpainting API",
-        "Implement mask preview",
-        "Add regeneration strength control"
-      ],
-      "passes": false,
-      "priority": "low"
-    },
-    {
-      "id": "14",
-      "description": "AI Image Upscaling - Implement high-resolution image upscaling",
-      "steps": [
-        "Create ImageUpscaler component",
-        "Add upscaling scale selection (2x, 4x)",
-        "Implement upscaling algorithm selection",
-        "Add processing progress display",
-        "Implement preview comparison"
-      ],
-      "passes": false,
-      "priority": "low"
-    },
-    {
-      "id": "15",
-      "description": "Collaboration Features - Implement multi-user collaborative editing",
-      "steps": [
-        "Create collaboration invitation functionality",
-        "Implement real-time sync (WebSocket)",
-        "Add user online status display",
-        "Implement collaboration permission management",
-        "Create comments/annotations feature",
-        "Add collaboration history tracking"
-      ],
-      "passes": false,
-      "priority": "low"
+      "testedAt": null,
+      "failureReason": null,
+      "attemptCount": 0,
+      "priority": "must-have",
+      "complexity": "simple",
+      "createdAt": "2026-02-18T00:00:00Z",
+      "updatedAt": "2026-02-18T00:00:00Z"
     }
   ]
 }
