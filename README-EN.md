@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="public/logo.png" alt="Logo" width="120" />
+<img src="public/logo.png" alt="Logo" width="720" />
 
-# Long-Running Agent Loop Framework
+# Long-Running Agent
 
 A framework for executing long-running AI agent tasks with structured feature lists and progress tracking.
 
@@ -19,10 +19,10 @@ English | [**中文**](README.md)
 
 Core challenges AI agents face in long-running tasks:
 
-| Challenge | Description |
-|-----------|-------------|
-| **Context Window Limits** | Each new session has no memory of previous work |
-| **Premature Completion** | Agents tend to declare done too early when seeing existing progress |
+| Challenge                  | Description                                                           |
+| -------------------------- | --------------------------------------------------------------------- |
+| **Context Window Limits**  | Each new session has no memory of previous work                       |
+| **Premature Completion**   | Agents tend to declare done too early when seeing existing progress   |
 | **Doing Too Much At Once** | Trying to complete entire project in one go leads to mid-way failures |
 
 ---
@@ -46,6 +46,7 @@ npx ai-agent-loop init --lang en --dir ./my-project
 ```
 
 CLI will automatically:
+
 - Copy `CLAUDE.md` to project root
 - Create `agent-loop/` directory with all required files
 
@@ -70,7 +71,11 @@ Edit `feature_list.json`:
     {
       "id": "1",
       "description": "Implement user login feature",
-      "steps": ["Create login page", "Add form validation", "Integrate backend API"],
+      "steps": [
+        "Create login page",
+        "Add form validation",
+        "Integrate backend API"
+      ],
       "passes": false,
       "priority": "high"
     }
@@ -97,13 +102,13 @@ If you have specific tech stack requirements, you can specify them in `steps`:
 
 You can specify in steps:
 
-| Category | Examples |
-|----------|----------|
-| Frontend Framework | React / Vue / Angular |
+| Category             | Examples                              |
+| -------------------- | ------------------------------------- |
+| Frontend Framework   | React / Vue / Angular                 |
 | UI Component Library | shadcn/ui / Ant Design / Element Plus |
-| Styling | Tailwind CSS / CSS Modules |
-| State Management | Redux / Zustand / Jotai |
-| API Solution | Axios / React Query / SWR |
+| Styling              | Tailwind CSS / CSS Modules            |
+| State Management     | Redux / Zustand / Jotai               |
+| API Solution         | Axios / React Query / SWR             |
 
 ### 3. Start Claude Code
 
@@ -154,13 +159,13 @@ Please read PRD.md and then execute the following tasks:
 
 ## File Structure
 
-| File | Description |
-|------|-------------|
-| `CLAUDE.md` | Agent workflow definition (auto-read by Claude Code) |
-| `feature_list.json` | Feature list defining tasks to complete |
-| `claude-progress.txt` | Progress tracking |
-| `init.sh` | Development server startup script |
-| `run-agent-loop.ps1` | Loop execution script (optional) |
+| File                  | Description                                          |
+| --------------------- | ---------------------------------------------------- |
+| `CLAUDE.md`           | Agent workflow definition (auto-read by Claude Code) |
+| `feature_list.json`   | Feature list defining tasks to complete              |
+| `claude-progress.txt` | Progress tracking                                    |
+| `init.sh`             | Development server startup script                    |
+| `run-agent-loop.ps1`  | Loop execution script (optional)                     |
 
 ---
 
@@ -182,13 +187,13 @@ Please read PRD.md and then execute the following tasks:
 
 ### Field Reference
 
-| Field | Required | Description |
-|-------|----------|-------------|
-| id | ✅ | Unique identifier |
-| description | ✅ | Feature description |
-| steps | ✅ | Implementation steps array |
-| passes | ✅ | Completion status, initial false |
-| priority | ✅ | Priority: high/medium/low |
+| Field       | Required | Description                      |
+| ----------- | -------- | -------------------------------- |
+| id          | ✅       | Unique identifier                |
+| description | ✅       | Feature description              |
+| steps       | ✅       | Implementation steps array       |
+| passes      | ✅       | Completion status, initial false |
+| priority    | ✅       | Priority: high/medium/low        |
 
 ---
 
@@ -224,23 +229,23 @@ Please read PRD.md and then execute the following tasks:
 
 This repository includes a complete feature list for a comic generation project (15 features total):
 
-| Priority | Feature |
-|----------|---------|
-| High | Project Infrastructure Setup |
-| High | User Authentication System |
-| High | AI Image Generation Panel |
-| High | Image Editing Tools |
-| High | Comic Panel Grid System |
-| Medium | Speech Bubble System |
-| Medium | Character Management System |
-| Medium | Storyboard Management |
-| Medium | Project/Workspace Management |
-| Medium | Asset Library |
-| Medium | Export Functionality |
-| Low | History System |
-| Low | AI Inpainting |
-| Low | AI Image Upscaling |
-| Low | Collaboration Features |
+| Priority | Feature                      |
+| -------- | ---------------------------- |
+| High     | Project Infrastructure Setup |
+| High     | User Authentication System   |
+| High     | AI Image Generation Panel    |
+| High     | Image Editing Tools          |
+| High     | Comic Panel Grid System      |
+| Medium   | Speech Bubble System         |
+| Medium   | Character Management System  |
+| Medium   | Storyboard Management        |
+| Medium   | Project/Workspace Management |
+| Medium   | Asset Library                |
+| Medium   | Export Functionality         |
+| Low      | History System               |
+| Low      | AI Inpainting                |
+| Low      | AI Image Upscaling           |
+| Low      | Collaboration Features       |
 
 ---
 

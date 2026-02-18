@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="public/logo.png" alt="Logo" width="120" />
+<img src="public/logo.png" alt="Logo" width="720" />
 
-# Long-Running Agent 循环执行框架
+# Long-Running Agent
 
 一个通过结构化功能清单和进度跟踪来执行长时间 AI Agent 任务的框架。
 
@@ -21,11 +21,11 @@
 
 AI Agent 在长时间任务中面临的核心挑战：
 
-| 挑战 | 描述 |
-|------|------|
-| **上下文窗口限制** | 每个新会话对之前没有记忆 |
-| **过早完成** | Agent 看到已有进展后容易过早宣布完成 |
-| **一次性做太多** | 试图一口气完成整个项目导致中途失败 |
+| 挑战               | 描述                                 |
+| ------------------ | ------------------------------------ |
+| **上下文窗口限制** | 每个新会话对之前没有记忆             |
+| **过早完成**       | Agent 看到已有进展后容易过早宣布完成 |
+| **一次性做太多**   | 试图一口气完成整个项目导致中途失败   |
 
 ---
 
@@ -48,6 +48,7 @@ npx ai-agent-loop init --lang zh --dir ./my-project
 ```
 
 CLI 会自动：
+
 - 复制 `CLAUDE.md` 到项目根目录
 - 创建 `agent-loop/` 目录及所有必要文件
 
@@ -76,7 +77,12 @@ Copy-Item agent-loop/CLAUDE.md target-project/
       "id": "1",
       "description": "实现用户登录功能",
       "testableSteps": [
-        {"step": 1, "action": "导航到登录页", "target": "/login", "verification": "页面包含登录"}
+        {
+          "step": 1,
+          "action": "导航到登录页",
+          "target": "/login",
+          "verification": "页面包含登录"
+        }
       ],
       "passes": false,
       "priority": "must-have"
@@ -157,14 +163,14 @@ claude
 
 ## 文件说明
 
-| 文件 | 说明 |
-|------|------|
-| `CLAUDE.md` | 入口文档（复制到项目根目录） |
-| `agent-loop/CLAUDE-INIT.md` | 初始化代理指南（首个会话） |
-| `agent-loop/CLAUDE-CODING.md` | 编码代理指南（后续会话） |
-| `agent-loop/feature_list.json` | 功能清单模板 |
-| `agent-loop/init.sh` | 启动+测试脚本 |
-| `agent-loop/claude-progress.txt` | 进度记录 |
+| 文件                             | 说明                         |
+| -------------------------------- | ---------------------------- |
+| `CLAUDE.md`                      | 入口文档（复制到项目根目录） |
+| `agent-loop/CLAUDE-INIT.md`      | 初始化代理指南（首个会话）   |
+| `agent-loop/CLAUDE-CODING.md`    | 编码代理指南（后续会话）     |
+| `agent-loop/feature_list.json`   | 功能清单模板                 |
+| `agent-loop/init.sh`             | 启动+测试脚本                |
+| `agent-loop/claude-progress.txt` | 进度记录                     |
 
 ---
 
