@@ -38,8 +38,8 @@ function getMessages(lang) {
     installing: isZh ? '安装中...' : 'Installing...',
     success: isZh ? '\n初始化完成!\n' : '\nInitialization complete!\n',
     nextSteps: isZh
-      ? '\n下一步:\n  cd <dir>\n  claude\n  然后告诉 Claude: "请读取 CLAUDE.md 和 agent-loop/feature_list.json"\n'
-      : '\nNext steps:\n  cd <dir>\n  claude\n  Then tell Claude: "Please read CLAUDE.md and agent-loop/feature_list.json"\n',
+      ? '\n下一步:\n  1. cd <dir>\n  2. claude\n  3. 告诉 Claude: "请读取 CLAUDE.md 和 agent-loop/feature_list.json"\n  4. 按优先级实现 passes:false 的功能\n  5. 测试通过后才能标记为完成\n'
+      : '\nNext steps:\n  1. cd <dir>\n  2. claude\n  3. Tell Claude: "Please read CLAUDE.md and agent-loop/feature_list.json"\n  4. Implement features with passes:false by priority\n  5. Only mark as complete after tests pass\n',
     invalidLang: isZh
       ? '无效的语言选项'
       : 'Invalid language option',
