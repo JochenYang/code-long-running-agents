@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="public/logo.png" alt="Logo" width="120" />
+
 # Long-Running Agent 循环执行框架
 
 一个通过结构化功能清单和进度跟踪来执行长时间 AI Agent 任务的框架。

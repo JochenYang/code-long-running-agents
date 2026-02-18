@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="public/logo.png" alt="Logo" width="120" />
+
 # Long-Running Agent Loop Framework
 
 A framework for executing long-running AI agent tasks with structured feature lists and progress tracking.
