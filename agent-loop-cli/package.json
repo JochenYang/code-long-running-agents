@@ -1,5 +1,5 @@
 {
-  "name": "agent-loop",
+  "name": "@rhysyang/agent-loop",
   "version": "1.0.0",
   "description": "Long-Running Agent Loop Framework CLI - Based on Anthropic paper",
   "main": "src/index.js",
